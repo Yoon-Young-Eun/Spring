@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	
+	<context:component-scan base-package="tommy.spring.polymorphism">
+	</context:component-scan>
+	<bean id="sony" class="tommy.spring.polymorphism.SonySpeaker" />
+	
+	<!-- Set 컬렉션은 같은 데이터를 중복해서 저장하지 않으므로 실제는 한번만 나옴 
+	<bean id="collectionBean" class="tommy.spring.collection.CollectionBean">
+	     <property name="addressList">
+	          <set value-type="java.lang.String">
+					<value>서울시 서초구 서초동</value>	   
+					<value>서울시 동대문구 장안동</value>
+					<value>서울시 동대문구 장안동</value>
+					<value>서울시 동대문구 장안동</value>       	          
+	          </set>
+	     </property>
+	</bean>
+	-->
+	
+
+    <!-- Properties  . <prop>태그는 한개의 프로퍼티를 표현하며 프로퍼티이름을 key 속성에 입력하고 프로퍼티 값은
+                       <prop> 태그의 몸체 내용을 이용하여 입력한다.
+	<bean id="collectionBean" class="tommy.spring.collection.CollectionBean">
+	    <property name="addressList">
+	        <props>
+	            <prop key="홍길동">율도국</prop>
+	            <prop key="손오공">화과산</prop>
+	        </props>
+	    </property>
+	</bean>
+	 -->	
+	
+	<!-- Map
+	<bean id="collectionBean" class="tommy.spring.collection.CollectionBean">
+	    <property name="addressList">
+	        <map>
+	             <entry>
+	                  <key><value>홍길동</value></key>
+	                  <value>율도국</value>
+	             </entry>
+	             <entry>
+	                  <key><value>손오공</value></key>
+	                  <value>화과산</value>
+	             </entry>
+	        </map>
+	    </property>
+	</bean>
+	 -->
+	
+	<!--  list
+	<bean id="collectionBean" class="tommy.spring.collection.CollectionBean">
+	    <property name="addressList">
+	        <list>
+	             <value>서울시 서초구 서초동</value>
+	             <value>서울시 동대문구 장안동</value>
+	        </list>
+	    </property>
+	</bean>
+	 -->
+
+	
+   <!--  init-method : bean의 초기화 때 실행시킬 메소드 || destroy-method : bean 컨테이너의 종료 시에 실행시킬 메소드 -->
+   <!--  <bean id="tv" class="tommy.spring.polymorphism.SamsungTV" init-method="start" destroy-method="stop" />  -->
+   <!--  prototype : 요청이 이루어질 때마다 새로운 객체가 생성됨  
+         <bean id="tv" class="tommy.spring.polymorphism.SamsungTV" scope="prototype" /> -->
+   <!--  singleton : 객체가 한번만 생성됨  
+    <bean id="tv" class="tommy.spring.polymorphism.SamsungTV" scope="singleton" /> --> 
+    
+    <!-- p : namespace   
+    <bean id="tv" class="tommy.spring.polymorphism.SamsungTV" 
+     p:speaker-ref="sony" p:price="280000"/>
+
+    <bean id="sony" class="tommy.spring.polymorphism.SonySpeaker" />
+    <bean id="apple" class="tommy.spring.polymorphism.AppleSpeaker" />-->
+    
+   <!-- Setter 인젝션 사용하기 
+     setter 인젝션 사용지 name속성 값이 호출하고자 하는 메서드 이름이다. 즉, name 속성값이 "speaker" = setSpeaker() 다
+     property를 사용할때는 무조건 디폴트 생성자가 존재해야 한다.(습관적으로 만들어 놔라.)
+    <bean id="tv" class="tommy.spring.polymorphism.SamsungTV">
+		<property name="speaker" ref="apple" />
+		<property name="price" value="3000000" />
+	</bean>
+    -->
+      
+      
+      
+      
+</beans>
