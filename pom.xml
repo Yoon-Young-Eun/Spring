@@ -33,12 +33,27 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 				
+		<!--  oracle driver -->		
+		<dependency>
+		   <groupId>com.oracle</groupId>
+		   <artifactId>ojdbc11</artifactId>
+		   <version>21.6</version>
+		</dependency>		
+				
+				
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>	
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+    <version>${org.aspectj-version}</version>
+</dependency>
+		
 		
 		<!-- Logging -->
 		<dependency>
