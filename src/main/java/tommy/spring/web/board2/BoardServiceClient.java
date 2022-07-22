@@ -12,9 +12,9 @@ public class BoardServiceClient {
     AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
     //2. 스프링 컨테이너로 부터 BoardServiceImpl 객체를 lookup 한다.
     BoardService boardService = (BoardService)container.getBean("boardService");
-    
     //3. 글 등록 기능 테스트
     BoardVO vo = new BoardVO();
+    // 트랜잭션  vo.setSeq(1000);
     vo.setTitle("임시제목");
     vo.setWriter("홍길동");
     vo.setContent("1빠....");
