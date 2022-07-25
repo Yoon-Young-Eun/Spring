@@ -1,20 +1,24 @@
 package tommy.spring.web.user;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@Controller
+public class LogoutController {
 
-
-public class LogoutController implements Controller {
-
-	@Override
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
 		System.out.println("로그아웃 처리");
-		// 1. 브라우저와 연결된 세션 객체를 종료
+		session.invalidate();
+		return "login.jsp";
+	}
+}
+		
+		
+		
+		/* // 1. 브라우저와 연결된 세션 객체를 종료
 		// getSession(false): HttpSession이 존재하면 현재 HttpSession을 반환하고 
 		// 존재하지 않으면 새로이 생성하지 않고 그냥 null을 반환합니다.
 		HttpSession session =request.getSession(false);
@@ -24,5 +28,5 @@ public class LogoutController implements Controller {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:login.jsp");
 		return mav;
-	}
-}
+	}*/
+

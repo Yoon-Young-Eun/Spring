@@ -1,18 +1,24 @@
 package tommy.spring.web.user;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import tommy.spring.web.user.impl.UserDAO;
 
-public class LoginController implements Controller {
+@Controller
+public class LoginController {
 
-	@Override
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("로그인 처리");
+	@RequestMapping("/login.do")
+	public String login(UserVO vo, UserDAO userDAO) {
+	System.out.println("로그인 처리");
+	if (userDAO.getUser(vo) != null) {
+	return "getBoardList.do";
+	} else {
+	return "login.jsp";
+	}
+  }
+}
+		/*
 		//1. 사용자 입력 정보 추출
 		String id=request.getParameter("id");
 		String password = request.getParameter("password");
@@ -25,7 +31,7 @@ public class LoginController implements Controller {
 		UserVO user = userDao.getUser(vo);
 		
 		//3. 화면 네비게이션
-		ModelAndView mav= new ModelAndView();
+		ModelAndView mav= new ModelAndView();  
 		if(user != null) { //참이면
 			mav.setViewName("redirect:getBoardList.do"); //setViewName("뷰의 경로")로 뷰의 이름을 설정
 		}else {
@@ -33,5 +39,5 @@ public class LoginController implements Controller {
 			                                       //이를 무시하고 리다이렉트 한다.
 		}
 		return mav;
-	}
-}
+	}*/
+

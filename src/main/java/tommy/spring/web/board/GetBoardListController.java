@@ -2,23 +2,27 @@ package tommy.spring.web.board;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+
 import tommy.spring.web.BoardVO;
 import tommy.spring.web.board.impl.BoardDAO;
 
-
-public class GetBoardListController implements Controller {
-
-	@Override
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("글 목록 검색 처리");
+@Controller
+public class GetBoardListController{
+	@RequestMapping("/getBoardList.do")
+	public ModelAndView getBoardList(BoardVO vo, BoardDAO boardDao, 
+	ModelAndView mav) {
+	System.out.println("글 목록 검색 처리");
+	mav.addObject("boardList", boardDao.getBoardList(vo)); // Model 정보저당
+	mav.setViewName("getBoardList.jsp"); // View 정보저장
+	return mav;	
 		
-		//1. 사용자 입력 정보 추출 : 검색 기능은 나중에 구현
+	}
+}
+		/*
+		///1. 사용자 입력 정보 추출 : 검색 기능은 나중에 구현
 		//2. 데이터베이스 연동 처리
 		    BoardVO vo = new BoardVO();
 			BoardDAO boardDao = new BoardDAO();
@@ -38,5 +42,6 @@ public class GetBoardListController implements Controller {
 //			   사용할 getBoardList.jsp를 검색한다. 
 //			 - DispatcherServlet은 getBoardList.jsp를 실행하여 글 목록 화면을 전송한다
 	}
-}
+	*/
+
 
