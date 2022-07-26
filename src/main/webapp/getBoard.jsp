@@ -1,5 +1,5 @@
 <%@page import="tommy.spring.web.board.impl.BoardDAO"%>
-<%@page import="tommy.spring.web.BoardVO"%>
+<%@page import="tommy.spring.web.board.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     

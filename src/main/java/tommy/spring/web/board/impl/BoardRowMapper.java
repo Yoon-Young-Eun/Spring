@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import tommy.spring.web.BoardVO;
+import tommy.spring.web.board.BoardVO;
 
 // RowMapper 인터페이스를 구현한 BoardRowMapper 클래스
 public class BoardRowMapper implements RowMapper<BoardVO>{

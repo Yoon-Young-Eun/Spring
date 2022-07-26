@@ -1,6 +1,8 @@
-package tommy.spring.web;
+package tommy.spring.web.board;
 
 import java.sql.Date;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class BoardVO {
 
@@ -10,6 +12,28 @@ public class BoardVO {
 	private String content;
 	private Date regDate;
 	private int cnt;
+	private String searchCondition;
+	private String searchKeyword;
+	private MultipartFile uploadFile;
+
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
 	public int getSeq() {
 		return seq;
 	}

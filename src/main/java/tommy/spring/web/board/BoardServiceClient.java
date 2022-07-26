@@ -1,10 +1,8 @@
-package tommy.spring.web.board2;
+package tommy.spring.web.board;
 
 import java.util.List;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
-
-import tommy.spring.web.BoardVO;
 
 public class BoardServiceClient {
     public static void main(String[] arg) {

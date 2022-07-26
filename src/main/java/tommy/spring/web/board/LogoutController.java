@@ -1,4 +1,4 @@
-package tommy.spring.web.user;
+package tommy.spring.web.board;
 
 import javax.servlet.http.HttpSession;
 
