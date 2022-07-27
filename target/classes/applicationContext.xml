@@ -15,6 +15,18 @@
 	</context:component-scan>
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
+	<!-- Spring - mybatis 연동설정 : SqlSessionFactoryBean 클래스를 Bean으로 등록해야 한다. -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+	</bean>
+	
+	<!-- – SqlSessionTemplate 클래스를 이용한 mybatis 설정 
+	  SqlSessionTemplate는 setter메서드가 없어서 생성자 인젝션을 사용할 수 밖에 없다.  -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sessionFactory" />
+	</bean>
+	
 	<!-- DataSource 등록 -->
 	<context:property-placeholder location="classpath:config/database.properties"/>
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
@@ -49,17 +61,6 @@
 	
 					      
 
-
-	
-	
-	
-	
-	
-	
-	
-	
-	 
-	
 	
     
 <!--<bean id="log" class="tommy.spring.web.common.Log4jAdvice"></bean>  

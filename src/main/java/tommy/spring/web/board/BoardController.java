@@ -3,6 +3,7 @@ package tommy.spring.web.board;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,6 +26,29 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	@RequestMapping("/dataTransformJson.do")
+	@ResponseBody
+	public BoardListVO dataTransformJson(BoardVO vo){
+		vo.setSearchCondition("TITLE");
+		vo.setSearchKeyword("");
+		List<BoardVO> boardList=boardService.getBoardList(vo);
+		BoardListVO boardListVo = new BoardListVO();
+		boardListVo.setBoardList(boardList);
+		return boardListVo;
+	}
+	
+	@RequestMapping("/dataTransformXml.do")
+	@ResponseBody
+	public BoardListVO dataTransformXml(BoardVO vo){
+		vo.setSearchCondition("TITLE");
+		vo.setSearchKeyword("");
+		List<BoardVO> boardList=boardService.getBoardList(vo);
+		BoardListVO boardListVo = new BoardListVO();
+		boardListVo.setBoardList(boardList);
+		return boardListVo;
+	}
+	
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap() {
 		System.out.println("searchConditionMap()");

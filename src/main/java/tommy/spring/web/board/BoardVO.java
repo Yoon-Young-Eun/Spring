@@ -1,33 +1,55 @@
 package tommy.spring.web.board;
 
-import java.sql.Date;
-
+import java.util.Date;
+// 주의할 점은 등록날짜를 지정하는 regDate 변수는 이전까지는 java.sql.Date를 사용하였는데  
+// 이 객체는 기본 생성자가 없는 객체이다. 특정 자바 객체를 XML로 변환하려면 반드시 해당 클래스의 
+// 기본 생성자가 있어야 한다. 따라서 regDate 변수를 기본 생성자가 있는 java.util.Date 타입의 변수로 변경한 것이다
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.web.multipart.MultipartFile;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+// @XmlAccessorType은 BoardVO 객체를 XML로 변환할 수 있다는 의미이다.
+// XmlAccessType.FIELD 때문에 이 객체가 가진 필드 즉 변수들은 자동적으로 자식 엘리먼트로 표현된다.
+// seq 변수에만 @XmlAttribute가 붙었는데 이는 seq를 속성으로 표현하라는 의미이다.
+// @XmlTransient는 XML 변환에서 제외하라는 의미다.
+@XmlAccessorType(XmlAccessType.FIELD)
 public class BoardVO {
-
+	
+	@XmlAttribute
 	private int seq;
 	private String title;
 	private String writer;
 	private String content;
 	private Date regDate;
 	private int cnt;
+	@XmlTransient
 	private String searchCondition;
+	@XmlTransient
 	private String searchKeyword;
+	@XmlTransient
 	private MultipartFile uploadFile;
-
+	
+//	@JsonIgnore는 자바 객체를 JSON으로 변환할 때 특정 변수를 변환에서 제외시킨다. 
+//	주의할 점은 "getter 메서드" 위에 설정해야 한다는 점이다
+	
+	@JsonIgnore
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
 	}
+	@JsonIgnore
 	public String getSearchCondition() {
 		return searchCondition;
 	}
 	public void setSearchCondition(String searchCondition) {
 		this.searchCondition = searchCondition;
 	}
+	@JsonIgnore
 	public String getSearchKeyword() {
 		return searchKeyword;
 	}

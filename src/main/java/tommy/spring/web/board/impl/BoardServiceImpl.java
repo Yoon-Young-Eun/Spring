@@ -14,8 +14,10 @@ import tommy.spring.web.common.LogAdvice;
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
-	private BoardDAO boardDAO; //BoardServiceImpl 클래스에서 사용하는 DAO 클래스가 변경되어도 클라이언트에 
-	                           //해당하는 BoardController는 수정할 필요가 없다는 점이다.
+	private BoardDAOMybatis boardDAO;    //mybatis로 연결하는 방법
+	//private BoardDAO boardDAO;     <-jdbc로 연결하는 방법
+	//BoardServiceImpl 클래스에서 사용하는 DAO 클래스가 변경되어도 클라이언트에 
+	//해당하는 BoardController는 수정할 필요가 없다는 점이다.
 	
 	@Override
 	public void insertBoard(BoardVO vo) {

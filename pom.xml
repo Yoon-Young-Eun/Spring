@@ -33,6 +33,44 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 				
+				
+	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+	<dependency> <!-- JSON 응답 바디로 변경할때 -->
+  		  <groupId>com.fasterxml.jackson.core</groupId>
+  		  <artifactId>jackson-databind</artifactId>
+   		  <version>2.13.3</version>
+	</dependency>
+				
+    <!--  XML로 변환 문법 -->
+	<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+	<dependency>
+  		  <groupId>javax.xml.bind</groupId>
+   		  <artifactId>jaxb-api</artifactId>
+   		  <version>2.3.1</version>
+	</dependency>
+
+ 	<!-- XML로 변환 실행환경 -->
+	<!-- https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime -->
+	<dependency>
+  		  <groupId>org.glassfish.jaxb</groupId>
+   		  <artifactId>jaxb-runtime</artifactId>
+   		  <version>2.3.6</version>
+	</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.5.10</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring 둘을 연동하는 기능 -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis-spring</artifactId>
+    <version>2.0.7</version>
+</dependency>
+
 		<!--  oracle driver -->		
 		<dependency>
 		   <groupId>com.oracle</groupId>
@@ -161,8 +199,7 @@
     <version>4.13.2</version>
     <scope>test</scope>
 </dependency>
-       
-	</dependencies>
+</dependencies>
     <build>
         <plugins>
             <plugin>
