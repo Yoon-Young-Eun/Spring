@@ -1,6 +1,14 @@
 package tommy.spring.web.board;
 
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 // 주의할 점은 등록날짜를 지정하는 regDate 변수는 이전까지는 java.sql.Date를 사용하였는데  
 // 이 객체는 기본 생성자가 없는 객체이다. 특정 자바 객체를 XML로 변환하려면 반드시 해당 클래스의 
 // 기본 생성자가 있어야 한다. 따라서 regDate 변수를 기본 생성자가 있는 java.util.Date 타입의 변수로 변경한 것이다
@@ -16,46 +24,27 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 // seq 변수에만 @XmlAttribute가 붙었는데 이는 seq를 속성으로 표현하라는 의미이다.
 // @XmlTransient는 XML 변환에서 제외하라는 의미다.
 @XmlAccessorType(XmlAccessType.FIELD)
+
+@Entity
+@Table(name="myboard")
 public class BoardVO {
 	
-	@XmlAttribute
+	@Id
+	@GeneratedValue
 	private int seq;
 	private String title;
 	private String writer;
 	private String content;
+	@Temporal(TemporalType.DATE)
 	private Date regDate;
 	private int cnt;
-	@XmlTransient
+	@Transient
 	private String searchCondition;
-	@XmlTransient
+	@Transient
 	private String searchKeyword;
-	@XmlTransient
+	@Transient
 	private MultipartFile uploadFile;
 	
-//	@JsonIgnore는 자바 객체를 JSON으로 변환할 때 특정 변수를 변환에서 제외시킨다. 
-//	주의할 점은 "getter 메서드" 위에 설정해야 한다는 점이다
-	
-	@JsonIgnore
-	public MultipartFile getUploadFile() {
-		return uploadFile;
-	}
-	public void setUploadFile(MultipartFile uploadFile) {
-		this.uploadFile = uploadFile;
-	}
-	@JsonIgnore
-	public String getSearchCondition() {
-		return searchCondition;
-	}
-	public void setSearchCondition(String searchCondition) {
-		this.searchCondition = searchCondition;
-	}
-	@JsonIgnore
-	public String getSearchKeyword() {
-		return searchKeyword;
-	}
-	public void setSearchKeyword(String searchKeyword) {
-		this.searchKeyword = searchKeyword;
-	}
 	public int getSeq() {
 		return seq;
 	}
@@ -92,11 +81,23 @@ public class BoardVO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
-	
-	@Override
-	public String toString() {
-		return "BoardVO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regDate="
-				+ regDate + ", cnt=" + cnt + "]";
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
 	}
 	
 	
